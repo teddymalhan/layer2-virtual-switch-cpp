@@ -3,6 +3,7 @@ set(sources
     src/sys_utils.cpp
     src/tap_device.cpp
     src/ethernet_frame.cpp
+    src/udp_socket.cpp
 )
 
 set(exe_sources
@@ -17,6 +18,7 @@ set(headers
     include/project/sys_utils.hpp
     include/project/tap_device.hpp
     include/project/ethernet_frame.hpp
+    include/project/udp_socket.hpp
 )
 
 set(test_sources
@@ -26,4 +28,5 @@ set(test_sources
   src/sys_utils_test.cpp
   src/tap_device_test.cpp
   src/ethernet_frame_test.cpp
+  src/udp_socket_test.cpp
 )
