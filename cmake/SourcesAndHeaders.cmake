@@ -4,6 +4,7 @@ set(sources
     src/tap_device.cpp
     src/ethernet_frame.cpp
     src/udp_socket.cpp
+    src/vport.cpp
 )
 
 set(exe_sources
@@ -19,6 +20,7 @@ set(headers
     include/project/tap_device.hpp
     include/project/ethernet_frame.hpp
     include/project/udp_socket.hpp
+    include/project/vport.hpp
 )
 
 set(test_sources
