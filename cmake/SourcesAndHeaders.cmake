@@ -5,6 +5,7 @@ set(sources
     src/ethernet_frame.cpp
     src/udp_socket.cpp
     src/vport.cpp
+    src/mac_table.cpp
 )
 
 set(exe_sources
@@ -21,6 +22,7 @@ set(headers
     include/project/ethernet_frame.hpp
     include/project/udp_socket.hpp
     include/project/vport.hpp
+    include/project/mac_table.hpp
 )
 
 set(test_sources
@@ -31,4 +33,5 @@ set(test_sources
   src/tap_device_test.cpp
   src/ethernet_frame_test.cpp
   src/udp_socket_test.cpp
+  src/mac_table_test.cpp
 )
