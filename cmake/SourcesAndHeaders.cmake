@@ -13,4 +13,6 @@ set(headers
 
 set(test_sources
   src/tmp_test.cpp
+  src/expected_test.cpp
+  src/joining_thread_test.cpp
 )
