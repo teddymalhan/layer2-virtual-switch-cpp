@@ -127,20 +127,33 @@ namespace project
     constexpr expected(const expected&) = default;
     constexpr expected(expected&&) = default;
 
-    template<typename U = T>
-    constexpr explicit(!std::is_convertible_v<U, T>) expected(U&& v) : data_(std::in_place_index<0>, std::forward<U>(v))
+    template<typename U = T, typename = std::enable_if_t<std::is_convertible_v<U, T>>>
+    constexpr expected(U&& v) : data_(std::in_place_index<0>, std::forward<U>(v))
     {
     }
 
-    template<typename G>
-    constexpr explicit(!std::is_convertible_v<const G&, E>) expected(const unexpected<G>& e)
-        : data_(std::in_place_index<1>, e.error())
+    template<typename U = T, typename = std::enable_if_t<!std::is_convertible_v<U, T>>, typename = void>
+    constexpr explicit expected(U&& v) : data_(std::in_place_index<0>, std::forward<U>(v))
     {
     }
 
-    template<typename G>
-    constexpr explicit(!std::is_convertible_v<G, E>) expected(unexpected<G>&& e)
-        : data_(std::in_place_index<1>, std::move(e.error()))
+    template<typename G, typename = std::enable_if_t<std::is_convertible_v<const G&, E>>>
+    constexpr expected(const unexpected<G>& e) : data_(std::in_place_index<1>, e.error())
+    {
+    }
+
+    template<typename G, typename = std::enable_if_t<!std::is_convertible_v<const G&, E>>, typename = void>
+    constexpr explicit expected(const unexpected<G>& e) : data_(std::in_place_index<1>, e.error())
+    {
+    }
+
+    template<typename G, typename = std::enable_if_t<std::is_convertible_v<G, E>>>
+    constexpr expected(unexpected<G>&& e) : data_(std::in_place_index<1>, std::move(e.error()))
+    {
+    }
+
+    template<typename G, typename = std::enable_if_t<!std::is_convertible_v<G, E>>, typename = void>
+    constexpr explicit expected(unexpected<G>&& e) : data_(std::in_place_index<1>, std::move(e.error()))
     {
     }
 
@@ -310,15 +323,23 @@ namespace project
     constexpr expected(const expected&) = default;
     constexpr expected(expected&&) = default;
 
-    template<typename G>
-    constexpr explicit(!std::is_convertible_v<const G&, E>) expected(const unexpected<G>& e)
-        : data_(std::in_place_index<1>, e.error())
+    template<typename G, typename = std::enable_if_t<std::is_convertible_v<const G&, E>>>
+    constexpr expected(const unexpected<G>& e) : data_(std::in_place_index<1>, e.error())
     {
     }
 
-    template<typename G>
-    constexpr explicit(!std::is_convertible_v<G, E>) expected(unexpected<G>&& e)
-        : data_(std::in_place_index<1>, std::move(e.error()))
+    template<typename G, typename = std::enable_if_t<!std::is_convertible_v<const G&, E>>, typename = void>
+    constexpr explicit expected(const unexpected<G>& e) : data_(std::in_place_index<1>, e.error())
+    {
+    }
+
+    template<typename G, typename = std::enable_if_t<std::is_convertible_v<G, E>>>
+    constexpr expected(unexpected<G>&& e) : data_(std::in_place_index<1>, std::move(e.error()))
+    {
+    }
+
+    template<typename G, typename = std::enable_if_t<!std::is_convertible_v<G, E>>, typename = void>
+    constexpr explicit expected(unexpected<G>&& e) : data_(std::in_place_index<1>, std::move(e.error()))
     {
     }
 

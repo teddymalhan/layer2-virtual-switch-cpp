@@ -24,7 +24,7 @@ namespace project
    * 
    * Example usage:
    * @code
-   * void worker_function() { /* ... */ }
+   * void worker_function() { }
    * 
    * void example()
    * {
