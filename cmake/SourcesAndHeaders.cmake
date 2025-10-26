@@ -2,6 +2,7 @@ set(sources
     src/tmp.cpp
     src/sys_utils.cpp
     src/tap_device.cpp
+    src/ethernet_frame.cpp
 )
 
 set(exe_sources
@@ -15,6 +16,7 @@ set(headers
     include/project/joining_thread.hpp
     include/project/sys_utils.hpp
     include/project/tap_device.hpp
+    include/project/ethernet_frame.hpp
 )
 
 set(test_sources
@@ -23,4 +25,5 @@ set(test_sources
   src/joining_thread_test.cpp
   src/sys_utils_test.cpp
   src/tap_device_test.cpp
+  src/ethernet_frame_test.cpp
 )
