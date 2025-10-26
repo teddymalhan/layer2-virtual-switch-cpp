@@ -6,6 +6,7 @@ set(sources
     src/udp_socket.cpp
     src/vport.cpp
     src/mac_table.cpp
+    src/vswitch.cpp
 )
 
 set(exe_sources
@@ -23,6 +24,7 @@ set(headers
     include/project/udp_socket.hpp
     include/project/vport.hpp
     include/project/mac_table.hpp
+    include/project/vswitch.hpp
 )
 
 set(test_sources
