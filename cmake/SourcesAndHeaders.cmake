@@ -36,4 +36,5 @@ set(test_sources
   src/ethernet_frame_test.cpp
   src/udp_socket_test.cpp
   src/mac_table_test.cpp
+  src/integration_test.cpp
 )
