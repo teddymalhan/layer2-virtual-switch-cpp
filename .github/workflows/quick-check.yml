@@ -1,0 +1,59 @@
+name: Quick Check
+
+on:
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  quick-build-and-test:
+    name: Quick Build and Test (Ubuntu GCC)
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            build-essential \
+            cmake \
+            ninja-build
+
+      - name: Configure CMake
+        run: |
+          cmake -B build \
+            -DCMAKE_BUILD_TYPE=Debug \
+            -DProject_ENABLE_UNIT_TESTING=ON \
+            -DProject_ENABLE_CCACHE=OFF \
+            -G Ninja
+
+      - name: Build
+        run: cmake --build build --config Debug
+
+      - name: Run tests
+        working-directory: ${{github.workspace}}/build
+        run: ctest -C Debug --output-on-failure --verbose
+
+  format-check:
+    name: Format Check
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install clang-format
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-format
+
+      - name: Check formatting
+        run: |
+          find include/ src/ test/ \( -name '*.hpp' -o -name '*.cpp' \) | \
+          xargs clang-format --dry-run --Werror || \
+          (echo "Code formatting issues found. Run 'make format' to fix." && exit 1)
+

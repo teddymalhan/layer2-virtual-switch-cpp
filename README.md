@@ -1,7 +1,6 @@
-[![Actions Status](https://github.com/filipdutescu/modern-cpp-template/workflows/MacOS/badge.svg)](https://github.com/filipdutescu/modern-cpp-template/actions)
-[![Actions Status](https://github.com/filipdutescu/modern-cpp-template/workflows/Windows/badge.svg)](https://github.com/filipdutescu/modern-cpp-template/actions)
-[![Actions Status](https://github.com/filipdutescu/modern-cpp-template/workflows/Ubuntu/badge.svg)](https://github.com/filipdutescu/modern-cpp-template/actions)
-[![codecov](https://codecov.io/gh/filipdutescu/modern-cpp-template/branch/master/graph/badge.svg)](https://codecov.io/gh/filipdutescu/modern-cpp-template)
+[![CI](https://github.com/teddymalhan/modern-cpp-template/workflows/CI/badge.svg)](https://github.com/teddymalhan/modern-cpp-template/actions)
+[![Quick Check](https://github.com/teddymalhan/modern-cpp-template/workflows/Quick%20Check/badge.svg)](https://github.com/teddymalhan/modern-cpp-template/actions)
+[![codecov](https://codecov.io/gh/teddymalhan/modern-cpp-template/branch/main/graph/badge.svg)](https://codecov.io/gh/teddymalhan/modern-cpp-template)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/filipdutescu/modern-cpp-template)](https://github.com/filipdutescu/modern-cpp-template/releases)
 
 # Modern C++ Template
