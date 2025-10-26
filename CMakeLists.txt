@@ -244,7 +244,11 @@ add_executable(vport src/vport_main.cpp)
 target_link_libraries(vport PRIVATE ${PROJECT_NAME})
 target_compile_features(vport PRIVATE cxx_std_17)
 
-verbose_message("Added vport executable target.")
+add_executable(vswitch src/vswitch_main.cpp)
+target_link_libraries(vswitch PRIVATE ${PROJECT_NAME})
+target_compile_features(vswitch PRIVATE cxx_std_17)
+
+verbose_message("Added vport and vswitch executable targets.")
 
 #
 # Format the project using the `clang-format` target (i.e: cmake --build build --target clang-format)
@@ -261,6 +265,7 @@ install(
   TARGETS
   ${PROJECT_NAME}
   vport
+  vswitch
   EXPORT
   ${PROJECT_NAME}Targets
   LIBRARY DESTINATION
