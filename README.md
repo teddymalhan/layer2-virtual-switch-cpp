@@ -3,19 +3,71 @@
 [![codecov](https://codecov.io/gh/teddymalhan/modern-cpp-template/branch/main/graph/badge.svg)](https://codecov.io/gh/teddymalhan/modern-cpp-template)
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/filipdutescu/modern-cpp-template)](https://github.com/filipdutescu/modern-cpp-template/releases)
 
-# Modern C++ Template
+# Modern C++ Virtual Switch Network (VPN)
 
-A quick C++ template for modern CMake projects, aimed to be an easy to use
-starting point.
+A modern C++17 implementation of a Layer 2 Virtual Private Network (VPN) / Virtual Switch system.
 
-This is my personal take on such a type of template, thus I might not use the
-best practices or you might disagree with how I do things. Any and all feedback
-is greatly appreciated!
+This project provides a learning switch that connects virtual network interfaces (TAP devices) 
+across networks via UDP, enabling Layer 2 Ethernet frame forwarding over IP networks.
+
+## What's Included
+
+- **VSwitch**: Central switching fabric with MAC address learning
+- **VPort**: Virtual port connecting TAP devices to the VSwitch
+- **Modern C++17**: RAII, std::expected, joining_thread, move semantics
+- **Cross-platform**: Works on Linux and macOS
+- **Comprehensive tests**: 113 unit and integration tests
+- **Executables**: `vport` and `vswitch`
+
+## Quick Start
+
+### Option 1: Docker (Easiest)
+
+```bash
+# Build and run automated test
+docker build -t vpn-alpine -f tests/Dockerfile .
+chmod +x tests/test_in_docker.sh
+./tests/test_in_docker.sh
+```
+
+### Option 2: Native Build
+
+```bash
+# Build
+cd /path/to/modern-cpp-template
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+
+# Start VSwitch
+./build/vswitch 8080
+
+# Start VPort (in another terminal, requires sudo)
+sudo ./build/vport 127.0.0.1 8080
+```
+
+### Documentation
+
+- **Testing Guide**: [tests/TESTING.md](tests/TESTING.md)
+- **Quick Start**: [tests/QUICK_START.md](tests/QUICK_START.md)
+- **Usage Guide**: [docs/vpn-usage.md](docs/vpn-usage.md)
+
+## Architecture
+
+The system consists of:
+- **VSwitch**: Central switch that learns MAC addresses and forwards frames
+- **VPort**: Virtual port bridging TAP device to VSwitch via UDP
+- **TAP Device**: Virtual network interface at Layer 2 (Ethernet)
 
 ## Features
 
 * Modern **CMake** configuration and project, which, to the best of my
 knowledge, uses the best practices,
+
+* **Layer 2 VPN**: Full Ethernet frame forwarding over UDP
+
+* **Learning Switch**: Automatic MAC address learning and forwarding
+
+* **Cross-Platform**: Works on Linux and macOS with proper TAP support
 
 * An example of a **Clang-Format** config, inspired from the base *Google* model,
 with minor tweaks. This is aimed only as a starting point, as coding style
