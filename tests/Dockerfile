@@ -31,4 +31,4 @@ RUN mkdir -p build && \
     ls -lh vport vswitch && \
     echo "Build complete!"
 
-ENTRYPOINT ["/bin/sh"]
+CMD ["/bin/sh"]

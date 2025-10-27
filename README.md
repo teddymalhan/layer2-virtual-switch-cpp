@@ -308,6 +308,7 @@ make test
 2. **Integration Tests** - Multi-component interaction
 3. **Docker Tests** - End-to-end testing
 4. **Manual Tests** - Verified on macOS
+5. **Stress Tests** - Performance and stability testing (see [tests/STRESS_TESTING.md](tests/STRESS_TESTING.md))
 
 ### Automated Docker Testing
 
@@ -317,10 +318,24 @@ chmod +x tests/test_in_docker.sh
 ./tests/test_in_docker.sh
 ```
 
+### Stress Testing
+
+```bash
+# Run comprehensive stress tests
+./tests/stress_comprehensive.sh
+
+# Or run individual tests
+./tests/stress_scale_test.sh      # Multiple VPort connections
+./tests/stress_throughput_test.sh # High packet rate
+./tests/stress_duration_test.sh   # Long-running stability
+```
+
 ### Testing Documentation
 
 - **Quick Start**: [tests/QUICK_START.md](tests/QUICK_START.md) - Get started in 5 minutes
 - **Comprehensive Guide**: [tests/TESTING.md](tests/TESTING.md) - Detailed testing documentation
+- **Stress Testing**: [tests/STRESS_TESTING.md](tests/STRESS_TESTING.md) - Performance and stability testing
+- **Industry Standard**: [tests/INDUSTRY_STANDARD_STRESS_TESTING.md](tests/INDUSTRY_STANDARD_STRESS_TESTING.md) - RFC 2544 compliant testing
 
 ---
 
